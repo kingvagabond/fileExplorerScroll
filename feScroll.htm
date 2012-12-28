@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/Article">
+<head>
+    <meta charset="utf-8" />
+    <title>feScroll - a jQuery plugin for custom drop down with images</title>
+    <meta name="description" content="feScroll is a light weight jquery plugin that creates a customized drop down list with images and description." />
+    <meta name="keywords" content="jquery drop down plugin,dropdown with images,drop down with images,customized dropdown,custom dropdown,customized drop down,custom drop down,jquery plugin dropdown images,custom drop down plugin with images,jquery combobox plugin" />
+    <meta itemprop="name" content="feScroll - a jquery plugin for drop down with images and description">
+    <meta itemprop="description" content="feScroll is a light weight jquery plugin that creates a customized drop down list with images and description.">
+    <meta itemprop="image" content="http://dl.dropbox.com/u/40036711/Images/Plugins/custom-drop-down-with-images.png">
+    <!--Scripts-->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.0.6-development-only.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script type='text/javascript' src='http://flesler-plugins.googlecode.com/files/jquery.scrollTo-1.4.3.1-min.js'></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
+    <!--Styles-->
+    <link href="http://fonts.googleapis.com/css?family=Lobster Two&subset=latin" rel="stylesheet"
+        type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Merienda One&subset=latin" rel="stylesheet"
+        type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=PT+Sans+Narrow:regular,bold&v1"
+        rel="stylesheet" type="text/css">
+    <link href="http://dl.dropbox.com/u/40036711/CSS/prettify.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        body
+        {
+            background: #eee;
+            font-family: Sans-Serif;
+            font-size: 14px;
+            margin: 0;
+            padding: 0;
+            color: #222;
+        }
+        .wrapper
+        {
+            width: 960px;
+            margin: 0 auto;
+        }
+        .demo-content
+        {
+            width: 100%;
+            background: #dadada;
+            border: solid 2px #ddd;
+            font-size: 12px;
+        }
+        .demo-live
+        {
+            padding: 20px;
+            background: #fff;
+            line-height: 1.4em;
+            min-height: 460px;
+        }
+        article
+        {
+            margin: 20px 0 30px;
+        }
+        article.half-l
+        {
+            width: 48%;
+            float: left;
+            margin-right: 2%;
+        }
+        article.half-r
+        {
+            width: 48%;
+            float: left;
+            margin-left: 2%;
+        }
+        article.full
+        {
+            float: left;
+            width: 100%;
+        }
+        article h3
+        {
+            margin: 0;
+            padding: 0 0 15px 0;
+            font-family: 'Merienda One' , sans-serif;
+        }
+        footer
+        {
+            border-top: solid 1px #ccc;
+            background: #ffffff;
+        }
+        #options li
+        {
+            padding: 7px 0;
+        }
+        .clearfix
+        {
+            clear: both;
+        }
+        li.separator
+        {
+            list-style: none;
+            color: Maroon;
+        }
+        .dd-selected
+        {
+            color: #000000;
+        }
+       /* Pretty printing styles. Used with prettify.js. */
+/* Vim sunburst theme by David Leibovic */
+
+pre .str, code .str { color: #65B042; } /* string  - green */
+pre .kwd, code .kwd { color: #E28964; } /* keyword - dark pink */
+pre .com, code .com { color: #AEAEAE; font-style: italic; } /* comment - gray */
+pre .typ, code .typ { color: #89bdff; } /* type - light blue */
+pre .lit, code .lit { color: #3387CC; } /* literal - blue */
+pre .pun, code .pun { color: #fff; } /* punctuation - white */
+pre .pln, code .pln { color: #fff; } /* plaintext - white */
+pre .tag, code .tag { color: #89bdff; } /* html/xml tag    - light blue */
+pre .atn, code .atn { color: #bdb76b; } /* html/xml attribute name  - khaki */
+pre .atv, code .atv { color: #65B042; } /* html/xml attribute value - green */
+pre .dec, code .dec { color: #3387CC; } /* decimal - blue */
+
+pre.prettyprint, code.prettyprint {
+        background-color: #444;
+        text-shadow:none;
+        font-size:12px;
+        line-height:1.6em;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -o-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -khtml-border-radius: 3px;
+        border-radius: 3px;
+}
+
+pre.prettyprint {
+        width: 95%;
+        margin: 16px auto;
+        padding: 1em;
+        white-space: pre-wrap;
+}
+
+
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums { margin-top: 0; margin-bottom: 0; color: #AEAEAE; } /* IE indents via margin-left */
+li.L0,li.L1,li.L2,li.L3,li.L5,li.L6,li.L7,li.L8 { list-style-type: none }
+/* Alternate shading for lines */
+li.L1,li.L3,li.L5,li.L7,li.L9 { }
+
+@media print {
+  pre .str, code .str { color: #060; }
+  pre .kwd, code .kwd { color: #006; font-weight: bold; }
+  pre .com, code .com { color: #600; font-style: italic; }
+  pre .typ, code .typ { color: #404; font-weight: bold; }
+  pre .lit, code .lit { color: #044; }
+  pre .pun, code .pun { color: #440; }
+  pre .pln, code .pln { color: #000; }
+  pre .tag, code .tag { color: #006; font-weight: bold; }
+  pre .atn, code .atn { color: #404; }
+  pre .atv, code .atv { color: #060; }
+}
+</style>
+
+<meta http-equiv="x-dns-prefetch-control" content="off"/></head>
+<body onload="prettyPrint();">
+    <section class="wrapper">
+        <section>
+            <h2 id="demo">
+                Demo:</h2>
+            <div class="clearfix">
+            </div>
+            <article class="half-l">
+                <div class="demo-content">
+                    <div class="demo-live">
+                        <div id="demoTruncated">
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <article class="half-r">
+                Source:
+<pre class="prettyprint">
+$('#demoTruncated').fescroll({
+    data: ddDataLongDescription,
+    selectText: "Select your favorite social network",
+    truncateDescription: true
+});
+</pre>
+<p>
+    By default plugin will truncate the description in selected view if it overflows.
+    You may however turn the default behavior by setting <code>truncateDescription:false</code>
+    to show the complete description. Either way you still get the complete description
+    with returned selected data. Also use <code>.dd-desc</code> to add your own styles
+    to description.</p>
+            </article>
+            <div class="clearfix">
+            </div>
+        </section>
+        <div class="clearfix">
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Dropdown plugin data
+            var ddDataLongDescription = [
+                {
+                    text: "Facebook",
+                    value: 1,
+                    checkbox: true,
+                    description: "Facebook is a social networking service launched in February 2004, " +
+                        "owned and operated by Facebook, Inc.[5] As of September 2012, Facebook has " +
+                        "over one billion active users,[6] more than half of them using Facebook on " +
+                        "a mobile device.[7] Users must register before using the site, after which " +
+                        "they may create a personal profile, add other users as friends, and exchange " +
+                        "messages, including automatic notifications when they update their profile. " +
+                        "Additionally, users may join common-interest user groups, organized by " +
+                        "workplace, school or college, or other characteristics, and categorize " +
+                        "their friends into lists such as \"People From Work\" or \"Close Friends\"",
+                    imageSrc: "http://dl.dropbox.com/u/40036711/Images/facebook-icon-32.png"
+                },
+                {
+                    text: "Apple",
+                    value: 2,
+                    checkbox: true,
+                    description: "Apple Inc. (NASDAQ: AAPL), formerly Apple Computer, Inc., is an American" + 
+                        " multinational corporation headquartered in Cupertino, California that designs, " + 
+                        "develops, and sells consumer electronics, computer software, and personal computers.",
+                    imageSrc: "http://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/100px-Apple_logo_black.svg.png"
+                },
+                {
+                    text: "Motorola",
+                    value: 3,
+                    checkbox: false,
+                    description: "Motorola, Inc. (pron.: /moʊtɵˈroʊlə/) was an American multinational " +
+                        "telecommunications company based in Schaumburg, Illinois. After having lost " +
+                        "$4.3 billion from 2007 to 2009, the company was divided into two independent " +
+                        "public companies, Motorola Mobility and Motorola Solutions on January 4, 2011." +
+                        " Motorola Solutions is generally considered to be the direct successor to " +
+                        "Motorola, Inc., as the reorganization was structured with Motorola Mobility being spun off",
+                    imageSrc: "http://logointheworld.com/wp-content/uploads/2012/05/motorola_logo.png"
+                },
+                {
+                    text: "LinkedIn",
+                    value: 4,
+                    checkbox: true,
+                    description: "LinkedIn (NYSE: LNKD) (pron.: /ˌlɪŋkt.ˈɪn/) is a social networking " +
+                        "website for people in professional occupations. Founded in December 2002 and " +
+                        "launched on May 5, 2003, it is mainly used for professional networking. As " +
+                        "of June 2012, LinkedIn reports more than 175 million registered users in more " +
+                        "than 200 countries and territories",
+                    imageSrc: "http://dl.dropbox.com/u/40036711/Images/linkedin-icon-32.png"
+                },
+                {
+                    text: "Yelp",
+                    value: 5,
+                    checkbox: true,
+                    description: "Description with Yelp",
+                    imageSrc: "http://www.allegramarin.com/Portals/321/images/yelp-logo.jpg"
+                },
+                {
+                    text: "Palm",
+                    value: 6,
+                    checkbox: true,
+                    description: "Palm, Inc., was an American smartphone manufacturer headquartered " +
+                        "in Sunnyvale, California, that was responsible for products such as the " +
+                        "Pre and Pixi as well as the Treo and Centro smartphones. Previous product " +
+                        "lines include the PalmPilot, Palm III, Palm V, Palm VII, Zire and Tungsten. " +
+                        "While their older devices run Palm OS Garnet, four editions of the Treo run " +
+                        "Windows Mobile. In early 2009 Palm announced a new operating system, webOS, " +
+                        "replacing the original Palm OS Garnet in their newest devices.",
+                    imageSrc: "http://logointheworld.com/wp-content/uploads/2012/05/palm-logo.png"
+                },
+                {
+                    text: "HomeDepot",
+                    value: 7,
+                    checkbox: false,
+                    description: "Description with HomeDepot",
+                    imageSrc: "http://logointheworld.com/wp-content/uploads/2012/05/home-depot-logo-80x80.gif"
+                },
+                {
+                    text: "Ebay",
+                    value: 8,
+                    checkbox: true,
+                    description: "eBay Inc. (rendered as ebay) is an American multinational internet " +
+                        "consumer-to-consumer corporation that manages eBay.com, an online auction and " +
+                        "shopping website in which people and businesses buy and sell a broad variety of " +
+                        "goods and services worldwide. Founded in 1995, eBay is one of the notable success " +
+                        "stories of the dot-com bubble; it is now a multi-billion dollar business with " +
+                        "operations localized in over thirty countries.",
+                    imageSrc: "http://logointheworld.com/wp-content/uploads/2012/05/ebay.com-logo.png"
+                },
+                {
+                    text: "Skype",
+                    value: 9,
+                    checkbox: false,
+                    description: "Skype was first released in 2003 written by Estonian developers Ahti " +
+                        "Heinla, Priit Kasesalu, and Jaan Tallinn, who had also originally developed " +
+                        "Kazaa. It developed into a platform with over 600 million users and was bought " +
+                        "by Microsoft in 2011 for $8.5 billion.",
+                    imageSrc: "http://www.paulmarc.org/sites/default/files/books/images/skype-logo.png"
+                },
+                {
+                    text: "Blogspot",
+                    value: 10,
+                    checkbox: true,
+                    description: "Description with Blogspot",
+                    imageSrc: "http://logointheworld.com/wp-content/uploads/2012/05/blogspot-icon.png"
+                }
+            ];
+
+            $('#demoTruncated').fescroll({
+                data: ddDataLongDescription,
+                selectText: "Select your favorite social network",
+                truncateDescription: true,
+                clickOffToClose: false,
+                height: "400px",
+                width: "420px"
+            });
+
+        });
+    </script>
+
+    <script type="text/javascript" src="jquery.fescroll.js"></script>
+
+</body>
+</html>
